@@ -1,5 +1,4 @@
 import React from 'react';
-import { Goose, Shark } from 'lucide-react';
 export const Header = ({
   darkMode
 }) => {
@@ -7,7 +6,7 @@ export const Header = ({
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <div className={`h-14 w-14 rounded-full flex items-center justify-center ${darkMode ? 'bg-blue-400' : 'bg-blue-100'} text-2xl`}>
-            <Goose size={32} />
+            🦍
           </div>
           <span className="font-bold text-xl">Diego</span>
         </div>
@@ -18,7 +17,7 @@ export const Header = ({
         <div className="flex items-center space-x-2">
           <span className="font-bold text-xl">Emma</span>
           <div className={`h-14 w-14 rounded-full flex items-center justify-center ${darkMode ? 'bg-pink-400' : 'bg-pink-100'} text-2xl`}>
-            <Shark size={32} />
+            🦈
           </div>
         </div>
       </div>
