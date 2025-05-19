@@ -1,0 +1,33 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.env
+   VITE_FIREBASE_API_KEY=AIzaSyCfRJ8o_Ob0X3jqioutgZhLDVntvn33Jzw
+   VITE_FIREBASE_AUTH_DOMAIN=expense-tracker-7f613.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=expense-tracker-7f613
+   VITE_FIREBASE_STORAGE_BUCKET=expense-tracker-7f613.appspot.com
+   VITE_FIREBASE_MESSAGING_SENDER_ID=636420519016
+   VITE_FIREBASE_APP_ID=1:636420519016:web:391114393bc7eca32977dd
+   VITE_FIREBASE_MEASUREMENT_ID=G-QJ4RWHGFT0
