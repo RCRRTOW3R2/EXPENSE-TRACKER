@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics, getFirestore } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,7 +11,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCfRJ8o_Ob0X3jqioutgZhLDVntvn33Jzw",
   authDomain: "expense-tracker-7f613.firebaseapp.com",
   projectId: "expense-tracker-7f613",
-  storageBucket: "expense-tracker-7f613.firebasestorage.app",
+  storageBucket: "expense-tracker-7f613.appspot.com",
   messagingSenderId: "636420519016",
   appId: "1:636420519016:web:391114393bc7eca32977dd",
   measurementId: "G-QJ4RWHGFT0"
