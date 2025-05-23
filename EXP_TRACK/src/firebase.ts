@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, Timestamp } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,5 +20,37 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const db = getFirestore(app);
 
-export const db = getFirestore(app);
+export const addExpense = async (expense: {
+  amount: number;
+  category: string;
+  description: string;
+  date: Date;
+}) => {
+  try {
+    const docRef = await addDoc(collection(db, "expenses"), {
+      ...expense,
+      date: Timestamp.fromDate(expense.date)
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding expense: ", error);
+    throw error;
+  }
+};
+
+export const getExpenses = async () => {
+  try {
+    const q = query(collection(db, "expenses"), orderBy("date", "desc"));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+      date: doc.data().date.toDate()
+    }));
+  } catch (error) {
+    console.error("Error getting expenses: ", error);
+    throw error;
+  }
+};

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, ComposedChart, Line } from 'recharts';
 export const SpendingChart = ({
   expenses,
   darkMode
@@ -68,6 +68,49 @@ export const SpendingChart = ({
               </p>
             </div>
           </div>)}
+      </div>
+      {/* New Bar Chart Section */}
+      <div className="relative -mt-16 z-10 transition-all duration-300 hover:z-20 hover:mt-0">
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-xl shadow-md`}> 
+          <h2 className={`text-lg font-bold mb-2 ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>Bar Chart Breakdown</h2>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={categoryData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#374151' : '#E5E7EB'} />
+                <XAxis dataKey="name" stroke={darkMode ? '#93c5fd' : '#1e40af'} />
+                <YAxis stroke={darkMode ? '#93c5fd' : '#1e40af'} />
+                <Tooltip contentStyle={{ backgroundColor: darkMode ? '#374151' : '#fff', borderColor: darkMode ? '#4B5563' : '#E5E7EB' }} />
+                <Bar dataKey="value">
+                  {categoryData.map((entry, index) => (
+                    <Cell key={`bar-cell-${index}`} fill={entry.color || `#${Math.floor(Math.random() * 16777215).toString(16)}`} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+      {/* New Stock Market Style Chart Section */}
+      <div className="relative -mt-16 z-0 transition-all duration-300 hover:z-20 hover:mt-0 mb-4">
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-xl shadow-md`}> 
+          <h2 className={`text-lg font-bold mb-2 ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>Stock Market Style Bars</h2>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={categoryData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#374151' : '#E5E7EB'} />
+                <XAxis dataKey="name" stroke={darkMode ? '#93c5fd' : '#1e40af'} />
+                <YAxis stroke={darkMode ? '#93c5fd' : '#1e40af'} />
+                <Tooltip contentStyle={{ backgroundColor: darkMode ? '#374151' : '#fff', borderColor: darkMode ? '#4B5563' : '#E5E7EB' }} />
+                <Bar dataKey="value" barSize={20} fill="#8884d8">
+                  {categoryData.map((entry, index) => (
+                    <Cell key={`stock-bar-cell-${index}`} fill={entry.color || `#${Math.floor(Math.random() * 16777215).toString(16)}`} />
+                  ))}
+                </Bar>
+                <Line type="monotone" dataKey="value" stroke="#82ca9d" />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
     </section>;
 };

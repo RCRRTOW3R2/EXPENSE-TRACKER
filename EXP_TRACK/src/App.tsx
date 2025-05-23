@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { ExpenseTimeline } from './components/ExpenseTimeline';
 import { SpendingChart } from './components/SpendingChart';
 import { AddExpenseButton } from './components/AddExpenseButton';
 import { AddExpenseModal } from './components/AddExpenseModal';
 import { ThemeToggle } from './components/ThemeToggle';
-import { db } from './firebase';
-import { collection, onSnapshot, addDoc, query, orderBy } from 'firebase/firestore';
+import { mockExpenses } from './data/mockData';
 
 interface Expense {
   id?: string;
@@ -19,22 +18,13 @@ interface Expense {
 
 export function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [expenses, setExpenses] = useState(mockExpenses);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Real-time Firestore sync
-  useEffect(() => {
-    const q = query(collection(db, 'expenses'), orderBy('date', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Expense));
-      setExpenses(data);
-    });
-    return () => unsubscribe();
-  }, []);
 
   const addExpense = async (expense: Expense) => {
     const { id, ...expenseData } = expense;
-    await addDoc(collection(db, 'expenses'), expenseData);
+    // Replace this with actual Firestore logic
+    console.log('Expense added:', expenseData);
     setIsModalOpen(false);
   };
 
